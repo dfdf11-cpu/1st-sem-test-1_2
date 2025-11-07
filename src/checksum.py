@@ -3,11 +3,15 @@ def modulo11Checksum(ISBNNumber: str):
         raise ValueError("ISBN number cannot be empty")
     
     digits = []
-    for char in ISBNNumber:
+    for i, char in enumerate(ISBNNumber):
         if char.isdigit():
             digits.append(int(char))
-        elif char.upper() == 'X' and len(digits) == 9:
-            digits.append(10)
+        elif char.upper() == 'X':
+            remaining_chars = ISBNNumber[i:].replace('-', '').replace(' ', '')
+            if len(remaining_chars) == 1 and len(digits) == 9:
+                digits.append(10)
+            else:
+                raise ValueError("X can only be used as the last check digit")
         elif not char in ['-', ' ']:
             raise ValueError(f"Invalid character '{char}' in ISBN number")
     
