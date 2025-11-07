@@ -1,5 +1,10 @@
 def modulo11Checksum(ISBNNumber: str):
-    digits = [int(char) for char in ISBNNumber if char.isdigit()]
+    digits = []
+    for char in ISBNNumber:
+        if char.isdigit():
+            digits.append(int(char))
+        elif char.upper() == 'X' and len(digits) == 9:
+            digits.append(10)
     
     if len(digits) != 10:
         raise ValueError("ISBN number must contain exactly 10 digits")
