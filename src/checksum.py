@@ -12,7 +12,9 @@ def modulo11Checksum(ISBNNumber: str):
                 digits.append(10)
             else:
                 raise ValueError("X can only be used as the last check digit")
-        elif not char in ['-', ' ']:
+        elif char in ['-', ' ']:
+            continue
+        else:
             raise ValueError(f"Invalid character '{char}' in ISBN number")
     
     if len(digits) != 10:
