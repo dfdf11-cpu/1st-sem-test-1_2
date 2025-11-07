@@ -1,4 +1,7 @@
 def binSearch(xs: list[int], x: int):
+    if not xs:
+        return -1
+        
     left, right = 0, len(xs) - 1
     while left <= right:
         mid = (left + right) // 2
